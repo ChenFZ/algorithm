@@ -1,6 +1,5 @@
 package com.chenfz.Leetcode;
 
-import com.sun.deploy.util.ArrayUtil;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Arrays;
@@ -16,13 +15,11 @@ public class Perm {
         Perm.permImpl(a, "");
     }
 
-//    迭代，将前面的数字固定下来
+    //    迭代，将前面的数字固定下来
     static void permImpl(int[] arr, String str) {
         if (arr.length > 1) {
             for (int i = 0; i < arr.length; i++) {
-//                System.out.println("copy arr"+Arrays.toString(Arrays.copyOfRange(arr, 0 ,0)));
                 int[] res = ArrayUtils.addAll(Arrays.copyOfRange(arr, 0, i), Arrays.copyOfRange(arr, i + 1, arr.length));
-
                 permImpl(res, str + arr[i]);
             }
         } else {
