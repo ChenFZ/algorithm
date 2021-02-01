@@ -1,7 +1,6 @@
 package com.chenfz.Leetcode.greedyAlgorithm;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * @author chenfz
@@ -52,10 +51,6 @@ public class CanPlaceFlowers {
     }
 
     private static boolean isOK(int totalFlowers,int n){
-        if (n <= totalFlowers) {
-            return true;
-        } else {
-            return false;
-        }
+        return n <= totalFlowers;
     }
 }
