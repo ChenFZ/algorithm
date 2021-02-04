@@ -8,9 +8,9 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package com.chenfz.Leetcode.twoPointers;
+package com.chenfz.leetcode.twoPointers;
 
-import com.chenfz.Leetcode.dataStructure.ListNode;
+import com.chenfz.leetcode.dataStructure.ListNode;
 
 /**
  * 〈一句话功能简述〉<br>

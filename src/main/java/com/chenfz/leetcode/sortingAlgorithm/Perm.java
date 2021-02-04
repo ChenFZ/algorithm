@@ -1,4 +1,4 @@
-package com.chenfz.Leetcode.sortingAlgorithm;
+package com.chenfz.leetcode.sortingAlgorithm;
 
 import org.apache.commons.lang3.ArrayUtils;
 

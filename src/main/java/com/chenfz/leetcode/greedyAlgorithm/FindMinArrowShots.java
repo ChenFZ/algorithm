@@ -1,4 +1,4 @@
-package com.chenfz.Leetcode.greedyAlgorithm;
+package com.chenfz.leetcode.greedyAlgorithm;
 
 import java.util.Arrays;
 
