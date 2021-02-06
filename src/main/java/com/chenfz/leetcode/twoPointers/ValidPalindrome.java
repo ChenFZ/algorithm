@@ -11,7 +11,7 @@
 package com.chenfz.leetcode.twoPointers;
 
 /**
- * 〈一句话功能简述〉<br> 
+ * 〈一句话功能简述〉<br>
  * 〈680. 验证回文字符串 Ⅱ Valid Palindrome II (Easy)〉
  *
  * @author Chen FZ
@@ -20,37 +20,32 @@ package com.chenfz.leetcode.twoPointers;
  */
 public class ValidPalindrome {
     public static void main(String[] args) {
-        String s = "aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga";
-        System.out.println(validPalindrome(s));
+        ValidPalindrome validPalindrome = new ValidPalindrome();
+        String s = "abcda";
+        System.out.println(validPalindrome.validPalindrome(s));
     }
 
-    public static boolean validPalindrome(String s) {
+    public boolean validPalindrome(String s) {
         int sLen = s.length();
-        if(sLen<2){
+        if (sLen < 2) {
             return true;
         }
         char[] charArray = s.toCharArray();
-        int left = 0, right = sLen-1;
-        int count = 0;
-        while (left<=right){
-            if(charArray[left] == charArray[right]){
-                left++;
-                right--;
-            }else{
-                if(charArray[left+1] == charArray[right]){
-                    count++;
-                    left++;
-                }else if(charArray[left] == charArray[right-1]) {
-                    count++;
-                    right--;
-                }else{
-                    return false;
-                }
-                if(count>1){
-                    return false;
-                }
+        for (int left = 0, right = sLen - 1; left < right; left++, right--) {
+            if (charArray[left] != charArray[right]) {
+                return secondVaild(charArray, left + 1, right) || secondVaild(charArray, left, right - 1);
             }
         }
         return true;
     }
+
+    private boolean secondVaild(char[] s, int begin, int end) {
+        while (begin < end) {
+            if (s[begin++] != s[end--]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
