@@ -41,12 +41,22 @@ public class ListNode<T> {
         }
     }
 
+    public ListNode() {
+    }
+
     // 遍历节点
     public static void show(ListNode pointer){
         while (pointer!=null){
             System.out.println(pointer.value);
             pointer = pointer.next;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "value=" + value +
+                '}';
     }
 }
 
