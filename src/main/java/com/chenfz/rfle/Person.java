@@ -11,6 +11,7 @@
 package com.chenfz.rfle;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -57,6 +58,14 @@ public class Person {
     public Person() {
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
     //私有方法
     private void privateMethod() {
         System.out.println("这是一个私有方法");
@@ -91,32 +100,77 @@ class TestConstructor {
 }
 
 class TestMethod {
-    public static void testMethod() throws ClassNotFoundException, NoSuchMethodException {
+    public static void testMethod() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
         String className = "com.chenfz.rfle.Person";
         Class<Person> clazz = (Class<Person>) Class.forName(className);
         System.out.println("获取clazz对应类中的所有方法，" +
                 "不能获取private方法，且获取从父类继承来的所有方法");
         Method[] methods = clazz.getMethods();
-        for (Method method:methods) {
-            System.out.println(method.getName()+"()");
+        for (Method method : methods) {
+            System.out.println(method.getName() + "()");
         }
 
         System.out.println("__________________________________");
         System.out.println("获取所有方法，包括私有方法" +
                 "所有声明的方法，且获取当前类方法");
         methods = clazz.getDeclaredMethods();
-        for (Method method:methods) {
-            System.out.println(method.getName()+"()");
+        for (Method method : methods) {
+            System.out.println(method.getName() + "()");
         }
+
+        System.out.println("__________________________________");
+        System.out.println("获取指定方法，和获取构造器的差不多，需要方法名称 和参数列表 无参则不写");
+        Method method = clazz.getDeclaredMethod("setName", String.class);
+        Method privateMethod = clazz.getDeclaredMethod("privateMethod");
+        privateMethod.setAccessible(true);
+        System.out.println(method);
+
+        System.out.println("执行我们获取的方法");
+        Person person = clazz.newInstance();
+        method.invoke(person, "xiaoming");
+        privateMethod.invoke(person);
+        System.out.println(person);
+
+    }
+}
+
+class TestField {
+    public static void testField() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
+        Class<Person> clazz = (Class<Person>) Class.forName("com.chenfz.rfle.Person");
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            System.out.println(field.getName());
+        }
+
+        System.out.println("获取指定的field");
+        Field name = clazz.getDeclaredField("name");
+        System.out.println(name.getName());
+
+        System.out.println("获取指定字段的值");
+        Person person = new Person("小明", 20);
+        Object o = name.get(person);
+        System.out.println(name.getName() + "=" + o);
+
+        System.out.println("设置指定字段的值");
+        name.set(person, "小红");
+        System.out.println(person);
+
+        System.out.println("访问私有的成员变量");
+        Field age = clazz.getDeclaredField("age");
+        age.setAccessible(true);
+        age.set(person, 21);
+        Object o1 = age.get(person);
+        System.out.println("age:"+o1);
+
 
     }
 }
 
 class ConstructorTest {
-    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
         //TestConstructor.testConstructor();
-        TestMethod.testMethod();
-
+        //TestMethod.testMethod();
+        TestField.testField();
     }
 }
 
