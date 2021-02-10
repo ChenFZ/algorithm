@@ -8,10 +8,8 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
+
 package com.chenfz.leetcode.twoPointers;
-
-import com.chenfz.dataStructure.ListNode;
-
 /**
  * 〈一句话功能简述〉<br>
  * 〈340. Longest Substring with At Most K Distinct Characters 最多有K个不同字符的最长子串〉
@@ -36,12 +34,42 @@ import com.chenfz.dataStructure.ListNode;
 public class LengthOfLongestSubstringKDistinct {
 
     public static void main(String[] args) {
+        String s = "eccccebaaa";
+        int k = 3;
 
-
+        System.out.println(lengthOfLongestSubstringKDistinct(s, k));
     }
 
-    public int LengthOfLongestSubstringKDistinct(String s, int k) {
+    public static int lengthOfLongestSubstringKDistinct(String s, int k) {
+        int sLen = s.length();
+        char[] charArrayS = s.toCharArray();
+        if (sLen == 0 || k == 0) {
+            return 0;
+        }
 
-        return 0;
+        int left = 0, right = 0;
+        int distance = k;
+        int maxLen = 0;
+        int[] winFreq = new int[128];
+        while (right < sLen) {
+            char curChar = charArrayS[right];
+            if (winFreq[curChar] == 0) {
+                distance--;
+            }
+            winFreq[curChar]++;
+            right++;
+            while (distance < 0) {
+                curChar = charArrayS[left];
+                if (winFreq[curChar] == 1) {
+                    distance++;
+                }
+                winFreq[ curChar]--;
+                left++;
+            }
+            if (distance == 0 && right - left > maxLen) {
+                maxLen = right - left;
+            }
+        }
+        return maxLen;
     }
 }

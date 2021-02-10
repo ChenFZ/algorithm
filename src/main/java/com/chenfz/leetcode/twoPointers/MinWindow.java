@@ -15,6 +15,15 @@ package com.chenfz.leetcode.twoPointers;
  * 〈76. 最小覆盖子串〉
  * sliding window
  *
+ * 题目描述
+ * 给定两个字符串 S 和T，求 S 中包含T 所有字符的最短连续子字符串的长度，同时要求时间
+ * 复杂度不得超过 O(n)。
+ * 输入输出样例
+ * 输入是两个字符串 S 和 T，输出是一个 S 字符串的子串。
+ * Input: S = "ADOBECODEBANC", T = "ABC"
+ * Output: "BANC"
+ * 在这个样例中，S 中同时包含一个 A、一个 B、一个 C 的最短子字符串是“BANC”。
+ *
  * @author Chen FZ
  * @create 2021/2/5
  * @since 1.0.0
