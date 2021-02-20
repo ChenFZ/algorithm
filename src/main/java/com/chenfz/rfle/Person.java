@@ -72,6 +72,12 @@ public class Person {
     }
 }
 
+class Man extends Person {
+    public Man(){
+        super();
+    }
+}
+
 class TestConstructor {
     public static void testConstructor() throws ClassNotFoundException, NoSuchMethodException {
         String className = "com.chenfz.rfle.Person";
@@ -109,6 +115,14 @@ class TestMethod {
         for (Method method : methods) {
             System.out.println(method.getName() + "()");
         }
+
+        System.out.println("打印子类所有声明方法");
+        Class<Man> manClazz = (Class<Man>) Class.forName("com.chenfz.rfle.Man");
+        Method[] declaredMethods = manClazz.getMethods();
+        for (Method method : declaredMethods) {
+            System.out.println(method.getName() + "()");
+        }
+
 
         System.out.println("__________________________________");
         System.out.println("获取所有方法，包括私有方法" +
@@ -169,8 +183,8 @@ class TestField {
 class ConstructorTest {
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchFieldException {
         //TestConstructor.testConstructor();
-        //TestMethod.testMethod();
-        TestField.testField();
+        TestMethod.testMethod();
+        //TestField.testField();
     }
 }
 
