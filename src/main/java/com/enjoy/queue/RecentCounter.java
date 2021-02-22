@@ -22,6 +22,7 @@ import java.util.Queue;
  * @since 1.0.0
  */
 public class RecentCounter {
+
     Queue<Integer> queue;
 
     public RecentCounter(){
