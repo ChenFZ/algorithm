@@ -22,6 +22,7 @@ import com.chenfz.leetcode.dataStructure.ListNode;
  */
 public class DetectCycle {
     public static void main(String[] args) {
+
         ListNode listNode = new ListNode(3);
         ListNode listNode1 = new ListNode(2);
         ListNode listNode2 = new ListNode(0);
