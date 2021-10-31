@@ -33,5 +33,9 @@ public class TestArrayList {
         String name = staticInner.getName();
         System.out.println(name);
         System.out.println(name + staticInner.field);
+
+        int a = '5' - '1';
+        int b = ~0;
+        System.out.println(a+"+"+b);
     }
 }
