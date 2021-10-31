@@ -27,8 +27,6 @@ import java.io.Serializable;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-@NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 public class SysUserEntity implements Serializable {
 
