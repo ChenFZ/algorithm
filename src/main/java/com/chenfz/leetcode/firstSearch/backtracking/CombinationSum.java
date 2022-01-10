@@ -49,7 +49,7 @@ public class CombinationSum {
     public static void main(String[] args) {
         CombinationSum combinationSum = new CombinationSum();
         int[] candidates = {2, 3, 6, 7};
-        int target = 7;
+        int target = 9;
         List<List<Integer>> lists = combinationSum.combinationSum(candidates, target);
         for (List list : lists) {
             System.out.println(Arrays.toString(list.toArray()));

@@ -51,6 +51,7 @@ public class SolveNQueens {
         solution(8);
         System.out.println(res.size());
         for (List list : res) {
+            System.out.println("----------------");
             System.out.println(Arrays.toString(list.toArray()));
         }
     }
@@ -91,7 +92,7 @@ public class SolveNQueens {
                 return false;
             }
         }
-        //左斜
+        //左斜 i + j = raw + col
         for (int i = 0; i < raw; i++) {
             if (col + raw - i >= 0 && col + raw - i < n && chessboard[i][col + raw - i] == 'Q') {
                 return false;

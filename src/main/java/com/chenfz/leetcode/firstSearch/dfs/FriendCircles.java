@@ -27,6 +27,11 @@ package com.chenfz.leetcode.firstSearch.dfs;
  * [0,0,1]]
  * Output: 2
  * 在这个样例中，[1,2] 处于一个朋友圈，[3] 处于一个朋友圈。
+ * 1   0   0   0   0
+ * 0   1   0   0   0
+ * 0   0   1   0   1
+ * 0   0   0   1   0
+ * 0   0   1   0   1
  *
  * @author Chen FZ
  * @create 2021/2/15
@@ -34,20 +39,36 @@ package com.chenfz.leetcode.firstSearch.dfs;
  */
 public class FriendCircles {
     public static void main(String[] args) {
-        int[][] grid = {{1, 1, 0},
-                {1, 1, 0},
-                {0, 0, 1}};
+        int[][] grid = {{1, 0, 0, 0, 1},
+                        {0, 1, 0, 0, 0},
+                        {0, 0, 1, 0, 1},
+                        {0, 0, 0, 1, 0},
+                        {1, 0, 1, 0, 1}};
         System.out.println(findCircleNum(grid));
     }
 
     public static int findCircleNum(int[][] grid) {
         int res = 0;
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (DeepFirstSearch.islandDFS(grid, i, j) > 0) res++;
+        int n = grid.length;
+        boolean[] visited = new boolean[n];
+        // 以行为单位遍历
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]){
+                dfs(grid, i, visited);
+                res++;
             }
         }
         return res;
+    }
+
+    private static void dfs(int[][] grid, int i, boolean[] visited) {
+        visited[i] = true;
+        // 每一行中的列，值为1且没有访问过，递归访问，可将一连串的行都访问完成
+        for (int j = 0; j < grid.length; j++) {
+            if (grid[i][j] == 1 && !visited[j]){
+                dfs(grid, j, visited);
+            }
+        }
     }
 
 }

@@ -38,11 +38,11 @@ public class WordSearch {
         char[][] board = new char[][]{{'A', 'B', 'C', 'E'},
                 {'S', 'F', 'C', 'S'},
                 {'A', 'D', 'E', 'E'}};
-        String word = "ABCCED";
+        String word = "ABCCFA";
         System.out.println(new WordSearch().exist(board, word));
     }
 
-    private int d[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    private final int[][] d = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     private final static int DIRECTION = 4;
     private int r, c;
     private boolean[][] visited;
